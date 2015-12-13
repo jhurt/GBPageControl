@@ -2,7 +2,7 @@
 
 A page control for use in [SpriteKit] (https://developer.apple.com/spritekit/) games written in Swift.
 
-|             Preview        	  											  |
+|             Demo        	  											      |
 |-----------------------------------------------------------------------------|
 |![Demo](https://s3-us-west-1.amazonaws.com/gb-page-control/GBPageControl.gif)|
 
