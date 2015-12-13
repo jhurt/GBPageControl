@@ -15,8 +15,33 @@
 		00C05C731C1C854900D4B456 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00C05C711C1C854900D4B456 /* Main.storyboard */; };
 		00C05C751C1C854900D4B456 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 00C05C741C1C854900D4B456 /* Assets.xcassets */; };
 		00C05C781C1C854900D4B456 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 00C05C761C1C854900D4B456 /* LaunchScreen.storyboard */; };
-		00C05C841C1C8D9A00D4B456 /* GBPageControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C05C561C1C839300D4B456 /* GBPageControl.framework */; };
+		00C05C851C1DFB6A00D4B456 /* GBPageControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C05C561C1C839300D4B456 /* GBPageControl.framework */; };
+		00C05C861C1DFB6A00D4B456 /* GBPageControl.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 00C05C561C1C839300D4B456 /* GBPageControl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		00C05C871C1DFB6A00D4B456 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 00C05C4D1C1C839300D4B456 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 00C05C551C1C839300D4B456;
+			remoteInfo = GBPageControl;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		00C05C891C1DFB6A00D4B456 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				00C05C861C1DFB6A00D4B456 /* GBPageControl.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		00C05C561C1C839300D4B456 /* GBPageControl.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GBPageControl.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,7 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00C05C841C1C8D9A00D4B456 /* GBPageControl.framework in Frameworks */,
+				00C05C851C1DFB6A00D4B456 /* GBPageControl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,10 +158,12 @@
 				00C05C631C1C854900D4B456 /* Sources */,
 				00C05C641C1C854900D4B456 /* Frameworks */,
 				00C05C651C1C854900D4B456 /* Resources */,
+				00C05C891C1DFB6A00D4B456 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				00C05C881C1DFB6A00D4B456 /* PBXTargetDependency */,
 			);
 			name = GBPageControlExample;
 			productName = GBPageControlExample;
@@ -155,9 +182,11 @@
 				TargetAttributes = {
 					00C05C551C1C839300D4B456 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = PRAH96RC6K;
 					};
 					00C05C661C1C854900D4B456 = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = PRAH96RC6K;
 					};
 				};
 			};
@@ -220,6 +249,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		00C05C881C1DFB6A00D4B456 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 00C05C551C1C839300D4B456 /* GBPageControl */;
+			targetProxy = 00C05C871C1DFB6A00D4B456 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		00C05C711C1C854900D4B456 /* Main.storyboard */ = {
@@ -334,12 +371,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = GBPageControl/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pulsefix.GBPageControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -352,12 +392,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = GBPageControl/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pulsefix.GBPageControl;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -369,11 +412,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = GBPageControlExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pulsefix.GBPageControlExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -381,10 +430,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = GBPageControlExample/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pulsefix.GBPageControlExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
