@@ -105,8 +105,7 @@ public class PageControl: NSObject {
             if panGestureStartPoint != nil {
                 let touchPoint = parentScene.convertPointFromView(recognizer.locationInView(recognizer.view))
                 let velocity = recognizer.velocityInView(recognizer.view!)
-                let magnitude = sqrt((velocity.x * velocity.x))
-                let slideMultiplier = magnitude / 35000
+                let slideMultiplier = abs(velocity.x) / 35000
                 let newPosition = boundContentNode(CGPoint(x: contentNode.position.x - (panGestureStartPoint.x - touchPoint.x) + (velocity.x * slideMultiplier),
                     y: contentNode!.position.y))
                 if abs(newPosition.x - panGestureStartContentPosition.x) < parentScene.size.width * 1.4 {
