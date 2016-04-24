@@ -58,8 +58,8 @@ public class PageControl: NSObject {
                 width:indicator.frame.width + touchMargin * 2.0,
                 height:indicator.frame.height + touchMargin * 2.0), location) {
                     let point = CGPoint(x:-1.0 * CGFloat(i) * parentScene.size.width, y:contentNode!.position.y)
-                    contentNode!.runAction(SKAction.moveTo(point, duration:0.2), completion: { () -> Void in
-                        self.pageStateDidChange()
+                    contentNode!.runAction(SKAction.moveTo(point, duration:0.2), completion: { [weak self] in
+                        self?.pageStateDidChange()
                     })
                     return true
             }
