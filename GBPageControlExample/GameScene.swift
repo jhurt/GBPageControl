@@ -42,7 +42,7 @@ class GameScene: SKScene {
     }
     
     private func addContent() {
-        for var i = 0; i < 4; i++ {
+        for i in 0 ..< 4 {
             let sprite = SKSpriteNode(imageNamed: String(format: "ship%d", i + 1))
             let x = self.size.width / 2.0 + self.size.width * CGFloat(i)
             let y = self.size.height / 2.0

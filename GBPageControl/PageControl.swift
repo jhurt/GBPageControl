@@ -92,7 +92,7 @@ public class PageControl: NSObject {
     }
     
     private func addPanGestureRecognizer() {
-        panGestureRecognizer = UIPanGestureRecognizer(target: self, action: "handlePanGesture:")
+        panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(PageControl.handlePanGesture(_:)))
         parentScene.view!.addGestureRecognizer(panGestureRecognizer)
     }
     
