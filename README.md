@@ -1,6 +1,7 @@
 # GBPageControl 
 
 A page control for use in [SpriteKit] (https://developer.apple.com/spritekit/) games written in Swift.
+This control is used in [Gridblock] (https://itunes.apple.com/us/app/gridblock/id1025368240?ls=1&mt=8) and [Gridblock Gravity] (https://itunes.apple.com/us/app/gridblock-gravity/id1074030694?ls=1&mt=8) available in the App Store.
 
 |             Demo        	  											      |
 |-----------------------------------------------------------------------------|
