@@ -48,20 +48,20 @@ public class PageControl: NSObject {
     }
     
     public func handleTouch(touch:UITouch) -> Bool {
-        let location = touch.locationInNode(pageIndicatorNode!)
+        let location = touch.location(in: pageIndicatorNode!)
         let touchMargin:CGFloat = xMargin / 2.0
         for i in 0...pageIndicators!.count - 1 {
             let indicator = pageIndicators![i]
-            if CGRectContainsPoint(CGRect(
+            if CGRect(
                 x:indicator.frame.origin.x - touchMargin,
                 y:indicator.frame.origin.y - touchMargin,
                 width:indicator.frame.width + touchMargin * 2.0,
-                height:indicator.frame.height + touchMargin * 2.0), location) {
-                    let point = CGPoint(x:-1.0 * CGFloat(i) * parentScene!.size.width, y:contentNode!.position.y)
-                    contentNode!.runAction(SKAction.moveTo(point, duration:0.2), completion: { [weak self] in
-                        self?.pageStateDidChange()
-                    })
-                    return true
+                height:indicator.frame.height + touchMargin * 2.0).contains(location) {
+                let point = CGPoint(x:-1.0 * CGFloat(i) * parentScene!.size.width, y:contentNode!.position.y)
+                contentNode!.run(SKAction.move(to: point, duration:0.2), completion: { [weak self] in
+                    self?.pageStateDidChange()
+                })
+                return true
             }
         }
         return false
@@ -87,40 +87,40 @@ public class PageControl: NSObject {
             pageIndicatorNode.addChild(pageCircle)
             pageIndicators.append(pageCircle)
         }
-        pageIndicatorNode.position = CGPoint(x:CGRectGetMidX(parentScene!.frame) - pageIndicatorWidth/2.0, y:yPosition + pageIndicatorHeight/2.0)
+        pageIndicatorNode.position = CGPoint(x: (parentScene!.frame.size.width / 2) - pageIndicatorWidth/2.0, y:yPosition + pageIndicatorHeight/2.0)
         parentScene?.addChild(pageIndicatorNode)
     }
     
     private func addPanGestureRecognizer() {
-        panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(PageControl.handlePanGesture(_:)))
+        panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(self.handlePanGesture))
         parentScene?.view?.addGestureRecognizer(panGestureRecognizer)
     }
     
-    public func handlePanGesture(recognizer: UIPanGestureRecognizer) {
-        if recognizer.state == UIGestureRecognizerState.Began {
-            panGestureStartPoint = parentScene?.convertPointFromView(recognizer.locationInView(recognizer.view))
+    @objc public func handlePanGesture(recognizer: UIPanGestureRecognizer) {
+        if recognizer.state == UIGestureRecognizerState.began {
+            panGestureStartPoint = parentScene?.convertPoint(fromView: recognizer.location(in: recognizer.view))
             panGestureStartContentPosition = contentNode.position
         }
-        else if recognizer.state == UIGestureRecognizerState.Changed {
+        else if recognizer.state == UIGestureRecognizerState.changed {
             if panGestureStartPoint != nil {
-                let touchPoint = parentScene?.convertPointFromView(recognizer.locationInView(recognizer.view))
-                let velocity = recognizer.velocityInView(recognizer.view!)
-                let slideMultiplier = abs(velocity.x) / 35000
-                let newPosition = boundContentNode(CGPoint(x: contentNode.position.x - (panGestureStartPoint.x - touchPoint!.x) + (velocity.x * slideMultiplier),
-                    y: contentNode!.position.y))
+                let touchPoint = parentScene?.convertPoint(fromView: recognizer.location(in: recognizer.view))
+                let velocity = recognizer.velocity(in: recognizer.view!)
+                let slideMultiplier : CGFloat = 1 / 100000
+                let newPosition = boundContentNode(point: CGPoint(x: contentNode.position.x - (panGestureStartPoint.x - touchPoint!.x) + (velocity.x * slideMultiplier),
+                                                                  y: contentNode!.position.y))
                 if abs(newPosition.x - panGestureStartContentPosition.x) < parentScene!.size.width * 1.4 {
                     contentNode!.position = newPosition
                 }
                 panGestureStartPoint = touchPoint
             }
         }
-        else if recognizer.state == UIGestureRecognizerState.Ended {
+        else if recognizer.state == UIGestureRecognizerState.ended {
             panGestureStartPoint = nil
             panGestureStartContentPosition = nil
             let page = getSelectedPage()
             let point = CGPoint(x:-1.0 * CGFloat(page) * parentScene!.size.width, y:contentNode!.position.y)
-            let moveTo = SKAction.moveTo(point, duration:0.2)
-            contentNode!.runAction(moveTo)
+            let moveTo = SKAction.move(to: point, duration:0.2)
+            contentNode!.run(moveTo)
             pageStateDidChange()
         }
     }
@@ -150,3 +150,4 @@ public class PageControl: NSObject {
         return point
     }
 }
+

@@ -12,20 +12,20 @@ import GBPageControl
 var pageControl:PageControl!
 
 class GameScene: SKScene {
-    override func didMoveToView(view: SKView) {
+    override func didMove(to view: SKView) {
         addBackground()
         pageControl = PageControl(scene: self)
         addContent()
-        pageControl.enable(4)
+        pageControl.enable(numberOfPages: 4)
     }
     
-    override func willMoveFromView(view: SKView) {
-        pageControl.willMoveFromView(view)
+    override func willMove(from view: SKView) {
+        pageControl.willMoveFromView(view: view)
     }
     
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
-            if pageControl.handleTouch(touch) {
+            if pageControl.handleTouch(touch: touch) {
                 //no op
             }
             else {
@@ -36,7 +36,7 @@ class GameScene: SKScene {
     
     func addBackground() {
         let background = SKShapeNode(rect: CGRect(x: 0.0, y: 0.0, width: self.size.width, height: self.size.height))
-        background.fillColor = UIColor.whiteColor()
+        background.fillColor = UIColor.white
         background.strokeColor = background.fillColor
         self.addChild(background)
     }
@@ -47,7 +47,7 @@ class GameScene: SKScene {
             let x = self.size.width / 2.0 + self.size.width * CGFloat(i)
             let y = self.size.height / 2.0
             sprite.position = CGPoint(x:x, y:y)
-            pageControl.addChild(sprite)
+            pageControl.addChild(node: sprite)
         }
     }
 }
