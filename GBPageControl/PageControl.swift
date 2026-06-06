@@ -72,9 +72,9 @@ public class PageControl: NSObject {
     private func addIndicator() {
         pageIndicatorNode = SKNode()
         pageIndicators = [SKShapeNode]()
-        let unusedCircleNode = SKShapeNode(circleOfRadius: radius)
-        let pageIndicatorWidth = unusedCircleNode.frame.width * CGFloat(numberOfPages) + CGFloat(numberOfPages - 1) * xMargin
-        let pageIndicatorHeight = unusedCircleNode.frame.height
+        let diameter = radius * 2.0
+        let pageIndicatorWidth = diameter * CGFloat(numberOfPages) + CGFloat(numberOfPages - 1) * xMargin
+        let pageIndicatorHeight = diameter
         let selectedPage = getSelectedPage()
         for i in 0...numberOfPages - 1 {
             let pageCircle = SKShapeNode(circleOfRadius: radius)
@@ -85,7 +85,7 @@ public class PageControl: NSObject {
                 pageCircle.fillColor = notSelectedColor
             }
             pageCircle.strokeColor = pageCircle.fillColor
-            pageCircle.position = CGPoint(x: (pageCircle.frame.size.width * CGFloat(i)) + (xMargin * CGFloat(i)) + (pageCircle.frame.size.width/2.0), y:0.0)
+            pageCircle.position = CGPoint(x: (diameter * CGFloat(i)) + (xMargin * CGFloat(i)) + (diameter/2.0), y:0.0)
             pageIndicatorNode.addChild(pageCircle)
             pageIndicators.append(pageCircle)
         }
