@@ -72,9 +72,8 @@ public class PageControl: NSObject {
     private func addIndicator() {
         pageIndicatorNode = SKNode()
         pageIndicators = [SKShapeNode]()
-        let unusedCircleNode = SKShapeNode(circleOfRadius: radius)
-        let pageIndicatorWidth = unusedCircleNode.frame.width * CGFloat(numberOfPages) + CGFloat(numberOfPages - 1) * xMargin
-        let pageIndicatorHeight = unusedCircleNode.frame.height
+        let pageIndicatorWidth = (radius * 2.0) * CGFloat(numberOfPages) + CGFloat(numberOfPages - 1) * xMargin
+        let pageIndicatorHeight = radius * 2.0
         let selectedPage = getSelectedPage()
         for i in 0...numberOfPages - 1 {
             let pageCircle = SKShapeNode(circleOfRadius: radius)
