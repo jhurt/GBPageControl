@@ -85,7 +85,7 @@ public class PageControl: NSObject {
                 pageCircle.fillColor = notSelectedColor
             }
             pageCircle.strokeColor = pageCircle.fillColor
-            pageCircle.position = CGPoint(x: (pageCircle.frame.size.width * CGFloat(i)) + (xMargin * CGFloat(i)) + (pageCircle.frame.size.width/2.0), y:0.0)
+            pageCircle.position = CGPoint(x: ((radius * 2.0) * CGFloat(i)) + (xMargin * CGFloat(i)) + radius, y:0.0)
             pageIndicatorNode.addChild(pageCircle)
             pageIndicators.append(pageCircle)
         }
