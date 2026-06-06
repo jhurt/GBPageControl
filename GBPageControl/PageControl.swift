@@ -78,12 +78,7 @@ public class PageControl: NSObject {
         let selectedPage = getSelectedPage()
         for i in 0...numberOfPages - 1 {
             let pageCircle = SKShapeNode(circleOfRadius: radius)
-            if i == selectedPage {
-                pageCircle.fillColor = selectedColor
-            }
-            else {
-                pageCircle.fillColor = notSelectedColor
-            }
+            pageCircle.fillColor = i == selectedPage ? selectedColor : notSelectedColor
             pageCircle.strokeColor = pageCircle.fillColor
             pageCircle.position = CGPoint(x: (pageCircle.frame.size.width * CGFloat(i)) + (xMargin * CGFloat(i)) + (pageCircle.frame.size.width/2.0), y:0.0)
             pageIndicatorNode.addChild(pageCircle)
@@ -131,12 +126,7 @@ public class PageControl: NSObject {
         let selectedPage = getSelectedPage()
         for i in 0...pageIndicators!.count - 1 {
             let circle = pageIndicators![i]
-            if i == selectedPage {
-                circle.fillColor = selectedColor
-            }
-            else {
-                circle.fillColor = notSelectedColor
-            }
+            circle.fillColor = i == selectedPage ? selectedColor : notSelectedColor
             circle.strokeColor = circle.fillColor
         }
     }
