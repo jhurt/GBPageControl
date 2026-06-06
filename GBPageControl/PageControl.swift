@@ -99,11 +99,11 @@ public class PageControl: NSObject {
     }
     
     @objc public func handlePanGesture(recognizer: UIPanGestureRecognizer) {
-        if recognizer.state == UIGestureRecognizerState.began {
+        if recognizer.state == .began {
             panGestureStartPoint = parentScene?.convertPoint(fromView: recognizer.location(in: recognizer.view))
             panGestureStartContentPosition = contentNode.position
         }
-        else if recognizer.state == UIGestureRecognizerState.changed {
+        else if recognizer.state == .changed {
             if panGestureStartPoint != nil {
                 let touchPoint = parentScene?.convertPoint(fromView: recognizer.location(in: recognizer.view))
                 let velocity = recognizer.velocity(in: recognizer.view!)
@@ -116,7 +116,7 @@ public class PageControl: NSObject {
                 panGestureStartPoint = touchPoint
             }
         }
-        else if recognizer.state == UIGestureRecognizerState.ended {
+        else if recognizer.state == .ended {
             panGestureStartPoint = nil
             panGestureStartContentPosition = nil
             let page = getSelectedPage()
