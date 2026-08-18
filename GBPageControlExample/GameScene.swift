@@ -28,7 +28,7 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch = touches.first!
+        guard let touch = touches.first else { return }
         if pageControl.handleTouch(touch: touch) {
             //no op
         }
@@ -49,7 +49,7 @@ class GameScene: SKScene {
             let sprite = SKSpriteNode(imageNamed: String(format: "ship%d", i + 1))
             let x = self.size.width / 2.0 + self.size.width * CGFloat(i)
             let y = self.size.height / 2.0
-            sprite.position = CGPoint(x:x, y:y)
+            sprite.position = CGPoint(x: x, y: y)
             pageControl.addChild(sprite)
         }
     }

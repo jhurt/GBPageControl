@@ -1,18 +1,22 @@
 # GBPageControl
 
-A page control for use in [SpriteKit] (https://developer.apple.com/spritekit/) games written in Swift.
-This control is used in [Gridblock] (https://itunes.apple.com/us/app/gridblock/id1025368240?ls=1&mt=8) and [Gridblock Gravity] (https://itunes.apple.com/us/app/gridblock-gravity/id1074030694?ls=1&mt=8) available in the App Store.
+A page control for use in [SpriteKit](https://developer.apple.com/spritekit/) games written in Swift.
+
+This control is used in:
+- [Gridblock](https://apps.apple.com/us/app/gridblock/id1025368240)
+- [Mad Wordz](https://apps.apple.com/us/app/mad-wordz/id6740180922)
+- [Boltage](https://apps.apple.com/us/app/boltage/id1287442521)
+- [Gravblock](https://apps.apple.com/us/app/gravblock/id1074030694)
 
 |             Demo        	  											      |
 |-----------------------------------------------------------------------------|
-|![Demo](https://s3-us-west-1.amazonaws.com/gb-page-control/GBPageControl.gif)|
-
+|![Demo](https://pub-39f4c17997e744b687ee111e7494fcf3.r2.dev/GBPageControlExample.gif)|
 
 
 ## Motivation
 
-Using a UIPageControl in a SpriteKit game is overly complex.
-GBPageControl provides a SpriteKit based page control for you to use in your games.
+Using a UIPageControl in a SpriteKit game is complex.
+GBPageControl provides a SpriteKit based page control for you to use in your games with less complexity.
 
 ## Getting Started
 
@@ -36,29 +40,31 @@ override func didMove(to view: SKView) {
 }
 
 private func addContent() {
-    for var i = 0; i < 4; i++ {
+    for i in 0..<4 {
         let node = SKShapeNode(circleOfRadius: 10)
         node.strokeColor = .blue
-        let x = self.size.width / 2.0 + self.size.width * CGFloat(i)
-        let y = self.size.height / 2.0
-        node.position = CGPoint(x:x, y:y)
+        let x = size.width / 2.0 + size.width * CGFloat(i)
+        let y = size.height / 2.0
+        node.position = CGPoint(x: x, y: y)
         pageControl.addChild(node)
     }
 }
 ```
-* Make sure to call pageControl.handleTouch in touchesBegan:
+
+* Call `pageControl.handleTouch` in `touchesBegan`:
 ```swift
 override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    let touch = touches.first!
+    guard let touch = touches.first else { return }
     if pageControl.handleTouch(touch: touch) {
-        //no op
+        // no op, page control handled it
     }
     else {
-        //handle touch
+        // handle touch in your game scene
     }
 }
 ```
-* Don't forget to call pageControl.willMoveFromView in willMoveFromView:
+
+* Call `pageControl.willMoveFromView` in `willMoveFromView`:
 ```swift
 override func willMove(from view: SKView) {
     super.willMove(from: view)
